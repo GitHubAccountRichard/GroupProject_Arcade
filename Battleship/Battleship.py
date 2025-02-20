@@ -16,12 +16,15 @@ def battleship_board():
 
 
 
-board = battleship_board()
-row_number = 1  # Start row numbering from 1
-for row in board:
-    print(f"Row {row_number} {' '.join(row)}")
-    row_number += 1  # Increment row number
 
+board = battleship_board()
+row_number = 1
+for row in row_number == 10:
+    if row_number == 1:
+        print(f"Row10 {' '.join(row)}")
+    else:
+        print(f"Row {row_number} {' '.join(row)}")
+row_number += 1
 
 
 
