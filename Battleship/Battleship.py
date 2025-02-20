@@ -1,5 +1,4 @@
 import random
-
 # Function to create a 10x10 battleship board
 def battleship_board():
     """
@@ -7,11 +6,10 @@ def battleship_board():
     :return: A 10x10 battleship board where each cell is initialized as "[ ]".
     """
     return [["[ ]"] * 10 for _ in range(10)]
-
 # Function to print the battleship board
 def print_board(board):
     """
-    Prints a visual representation of the battleship board.
+    Prints a visual of the battleship board.
     :param board: The battleship board to print (list of lists).
     """
     row_number = 1
@@ -21,7 +19,6 @@ def print_board(board):
         else:
             print(f"Row {row_number} {' '.join(row)}")
         row_number += 1
-
 # Function to pick a random starting position for the ship
 def ship_position():
     """
@@ -31,7 +28,6 @@ def ship_position():
     row = random.randint(0, 9)
     column = random.randint(0, 9)
     return row, column
-
 # Function to mark a ship's position on the board
 def long_mark_ship(board, row, column):
     """
@@ -49,8 +45,7 @@ def long_mark_ship(board, row, column):
         board[row+2][column] = "[X]"
     else:
         board[row-1][column] = "[X]"
-
-
+# Same for a different ship
 def broad_mark_ship(board, row, column):
     board[row][column] = "[X]"
     if column +1 > 9:
@@ -61,18 +56,7 @@ def broad_mark_ship(board, row, column):
         board[row][column+2] = "[X]"
     else:
         board[row][column-1] = "[X]"
-
-#Running this bs
-
-
-position1 = ship_position()
-row1 = position1[0]
-column1 = position1[1]
-
-position2 = ship_position()
-row2 = position2[0]
-column2 = position2[1]
-
+#Running comparing, in order to check if the ships intersect / crash into another :)
 def compare (row1, column1, row2, column2):
     for i in range(-1,1):
         if row1 == row2 or column1 == column2:
@@ -81,19 +65,43 @@ def compare (row1, column1, row2, column2):
             return True
         else:
             return False
+#Function to gather the user input
+def user_input():
+    print("Enter your coordinates: ")
+    row_pick = int(input("Enter row number: "))
+    column_pick = int(input("Enter column number: "))
+    return row_pick, column_pick
+#Function to check whether the user input was a hit
+def check_hit(row_pick, column_pick, row1, column1, row2, column2):
+    if compare(row1, column1, row_pick, column_pick):
+        hit = {
+            "row": row_pick,
+            "column": column_pick,
+            "hit_state": True,
+            "message": "You have hit the vertical ship!"
+        }
+        return hit
+    elif compare(row2, column2, row_pick, column_pick):
+        hit = {
+            "row": row_pick,
+            "column": column_pick,
+            "hit_state": True,
+            "message": "You have hit the horizontal ship!"
+        }
+        return hit
+    else:
+        hit = {
+            "row": row_pick,
+            "column": column_pick,
+            "hit_state": False,
+            "message": "You missed!"
+        }
+        return hit
 
-while compare(row1, column1, row2, column2) == True:
-    position1 = ship_position()
-    row1 = position1[0]
-    column1 = position1[1]
 
-    position2 = ship_position()
-    row2 = position2[0]
-    column2 = position2[1]
-    if compare(row1, column1, row2, column2) == False:
-        break
 
-board = battleship_board()
-broad_mark_ship(board, row2, column2)
-long_mark_ship(board, row1, column1)
-print_board(board)
+
+
+
+
+
