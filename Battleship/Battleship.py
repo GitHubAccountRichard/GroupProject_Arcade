@@ -17,8 +17,11 @@ def battleship_board():
 
 
 board = battleship_board()
+row_number = 1  # Start row numbering from 1
 for row in board:
-    print(" ".join(row))
+    print(f"Row {row_number} {' '.join(row)}")
+    row_number += 1  # Increment row number
+
 
 
 
