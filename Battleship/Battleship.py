@@ -74,36 +74,36 @@ def compare (row1, column1, row2, column2):
 #Function to gather the user input
 def user_input():
     print("Enter your coordinates: ")
-    row_pick = int(input("Enter row number: "))
-    column_pick = int(input("Enter column number: "))
+    row_pick = int(input("Enter row number: ")) - 1
+    column_pick = int(input("Enter column number: ")) - 1
     return row_pick, column_pick
+
 
 #Function to check whether the user input was a hit
 def check_hit(row_pick, column_pick, row1, column1, row2, column2):
-    if compare(row1, column1, row_pick, column_pick):
-        hit = {
+    # Check vertical ship positions
+    if (row_pick in [row1 - 1, row1, row1 + 1]) and column_pick == column1:  # Adjusted for vertical ship
+        return {
             "row": row_pick,
             "column": column_pick,
             "hit_state": True,
             "message": "You have hit the vertical ship!"
         }
-        return hit
-    elif compare(row2, column2, row_pick, column_pick):
-        hit = {
+    # Check horizontal ship positions
+    if (column_pick in [column2 - 1, column2, column2 + 1]) and row_pick == row2:  # Adjusted for horizontal ship
+        return {
             "row": row_pick,
             "column": column_pick,
             "hit_state": True,
             "message": "You have hit the horizontal ship!"
         }
-        return hit
-    else:
-        hit = {
-            "row": row_pick,
-            "column": column_pick,
-            "hit_state": False,
-            "message": "You missed!"
-        }
-        return hit
+    return {
+        "row": row_pick,
+        "column": column_pick,
+        "hit_state": False,
+        "message": "You missed!"
+    }
+
 
 # Function to replace [X] with [H] if the ship has been hit
 def replace_hit(board, row, column):
