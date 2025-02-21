@@ -29,9 +29,9 @@ def game():
         if result["hit_state"] is True:  # Hit
             ship_left -= 1
 
-    # Player has sunk the ship
+
     print("\nYou sank the ship!")
-    # Reveal board with ship positions
+
     print_board(board, hide=False)
 
 
