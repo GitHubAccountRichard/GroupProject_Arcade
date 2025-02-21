@@ -1,4 +1,4 @@
-# Group Project for Programming for Economists II 
+# Group Project     for Programming for Economists II 
 Group Project Repository for the Arcade project/game 
 
 ## Committing a change requires more steps:
