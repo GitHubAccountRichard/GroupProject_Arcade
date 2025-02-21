@@ -1,111 +1,101 @@
 import random
-# Function to create a 10x10 battleship board
-def battleship_board():
+
+
+# Function to create a 7x7 battleship board
+def makeBoard(size=7):
     """
-    Generates a 10x10 representation of a battleship board.
-    :return: A 10x10 battleship board where each cell is initialized as "[ ]".
+    Generates a 7x7 representation of a battleship board
+    :return: A battleship board where each cell is "[ ]".
     """
-    return [["[ ]"] * 10 for _ in range(10)]#
+    return [["[ ]"] * size for _ in range(size)]
+
 
 # Function to print the battleship board
-def print_board(board):
+def print_board(board, hide=True):
     """
-    Prints a visual of the battleship board.
-    :param board: The battleship board to print (list of lists).
+    Prints a visual of the board.
+    :param board: print board
+    :param hide: decide to hide the ship positions during gameplay.
     """
-    row_number = 1
     for row in board:
-        if row_number == 10:
-            print(f"Row10 {' '.join(row)}")  #Because "Row 10" string is longer than single digit rows
+        for cell in row:
+            if cell == "[X]" and hide:  # Hide ships during game
+                print("[ ]", end=" ")
+            else:
+                print(cell, end=" ")
+        print()
+    print()
+
+
+# Function to place a ship on the board
+def putShip(board, size, orientation=None):
+    """
+    Places a ship randomly on the board
+    :param board: The board where the ship will be placed
+    :param size: The size of the ship
+    :param orientation: not necessary but if I want to define the orientation of the ship later
+    """
+    while True:
+        direction = random.randint(0, 1) if orientation is None else orientation
+        if direction == 0:  # Horizontal placement
+            row = random.randint(0, len(board) - 1)
+            col = random.randint(0, len(board[0]) - size)
+
+            if all(board[row][col + i] == "[ ]" for i in range(size)):
+                for i in range(size):
+                    board[row][col + i] = "[X]"
+                return
         else:
-            print(f"Row {row_number} {' '.join(row)}")
-        row_number += 1
+            row = random.randint(0, len(board) - size)
+            col = random.randint(0, len(board[0]) - 1)
 
-# Function to pick a random starting position for the ship
-def ship_position():
-    """
-    Picks a random starting position for a ship on the board.
-    :return: A tuple (row, column) representing the ship's position.
-    """
-    row = random.randint(0, 9)
-    column = random.randint(0, 9)
-    return row, column
+            if all(board[row + i][col] == "[ ]" for i in range(size)):
+                for i in range(size):
+                    board[row + i][col] = "[X]"
+                return
 
-# Function to mark a ship's position on the board
-def long_mark_ship(board, row, column):
-    """
-    Marks a position on the battleship board with "[X]"
-    :param board: The battleship board to update (list of lists).
-    :param row: The row index (0-based).
-    :param column: The column index (0-based).
-    """
-    board[row][column] = "[X]"
-    if row +1 > 9:
-        board[row-2][column] = "[X]"
-    else:
-        board[row+1][column] = "[X]"
-    if row -1 < 0:
-        board[row+2][column] = "[X]"
-    else:
-        board[row-1][column] = "[X]"
 
-# Same for a different ship
-def broad_mark_ship(board, row, column):
-    board[row][column] = "[X]"
-    if column +1 > 9:
-        board[row][column-2] = "[X]"
-    else:
-        board[row][column+1] = "[X]"
-    if column -1 < 0:
-        board[row][column+2] = "[X]"
-    else:
-        board[row][column-1] = "[X]"
-
-#Running comparing, in order to check if the ships intersect / crash into another :)
-def compare (row1, column1, row2, column2):
-    for i in range(-1,1):
-        if row1 == row2 or column1 == column2:
-            return True
-        elif row1 + i == row2 or column1 + i == column2:
-            return True
-        else:
-            return False
-
-#Function to gather the user input
+# Function to take player input
 def user_input():
-    print("Enter your coordinates: ")
-    row_pick = int(input("Enter row number: ")) - 1
-    column_pick = int(input("Enter column number: ")) - 1
-    return row_pick, column_pick
+    """
+    Gathers user input for their guess
+    :return: Tuple of the user's guess
+    """
+    while True:
+        try:
+            row = int(input("Enter row number (1-7): ")) - 1
+            column = int(input("Enter column number (1-7): ")) - 1
+            if 0 <= row < 7 and 0 <= column < 7:
+                return row, column
+            else:
+                print("Out of bounds! Please pick numbers between 1 and 7.")
+        except ValueError:
+            print("Invalid input! Please enter numbers only.")
 
 
-#Function to check whether the user input was a hit
-def check_hit(row_pick, column_pick, row1, column1, row2, column2):
-    # Check vertical ship positions
-    if (row_pick in [row1 - 1, row1, row1 + 1]) and column_pick == column1:  # Adjusted for vertical ship
+# Function to check hits or misses
+def check_hit(board, row, col):
+    """
+    Checks whether the user hit a part of the ship or missed
+    :param board: The battleship board
+    :param row: The row  of the user's guess
+    :param col: The column  of the user's guess
+    :return: A dictionary with the result (hit/miss)
+    """
+    if board[row][col] == "[X]":  # Hit
+        board[row][col] = "[H]"  # Mark as hit
         return {
-            "row": row_pick,
-            "column": column_pick,
             "hit_state": True,
-            "message": "You have hit the vertical ship!"
+            "message": "You hit part of the ship!"
         }
-    # Check horizontal ship positions
-    if (column_pick in [column2 - 1, column2, column2 + 1]) and row_pick == row2:  # Adjusted for horizontal ship
+    elif board[row][col] in ["[O]", "[H]"]:  # Already guessed
         return {
-            "row": row_pick,
-            "column": column_pick,
-            "hit_state": True,
-            "message": "You have hit the horizontal ship!"
+            "hit_state": None,
+            "message": "You’ve already guessed this spot!"
         }
-    return {
-        "row": row_pick,
-        "column": column_pick,
-        "hit_state": False,
-        "message": "You missed!"
-    }
-
-
-# Function to replace [X] with [H] if the ship has been hit
-def replace_hit(board, row, column):
-    if board[row][column] == "[X]":
-        board[row][column] = "[H]"
+    else:  # Miss
+        board[row][col] = "[O]"
+        return {
+            "hit_state": False,
+            "message": "Miss!"
+        }

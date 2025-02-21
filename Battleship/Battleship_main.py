@@ -1,46 +1,40 @@
-import random
 import Battleship
 
-# Generate the first ship's random position
-position1 = Battleship.ship_position()
-row1 = position1[0]
-column1 = position1[1]
 
-# Generate the second ship's random position
-position2 = Battleship.ship_position()
-row2 = position2[0]
-column2 = position2[1]
+def game():
 
-# Ensure that ships do not overlap
-while Battleship.compare(row1, column1, row2, column2):
-    # If they overlap, regenerate only the second ship's position
-    position2 = Battleship.ship_position()
-    row2 = position2[0]
-    column2 = position2[1]
+    print("Welcome to Battleship!")
 
-# At this point, ship positions are finalized and will no longer change
-board = Battleship.battleship_board()
-Battleship.broad_mark_ship(board, row2, column2)  # Mark the second ship
-Battleship.long_mark_ship(board, row1, column1)  # Mark the first ship
-Battleship.print_board(board)
+    # Create board
+    board = Battleship.makeBoard(size=7)
 
-# User guess input
-user_coordinates = Battleship.user_input()
-row_pick = user_coordinates[0]
-column_pick = user_coordinates[1]
+    # Place the ship
+    Battleship.putShip(board, size=4)
 
-# Check if the guess is a hit
-hit_result = Battleship.check_hit(row_pick, column_pick, row1, column1, row2, column2)
+    # how many parts are left to hit
+    ship_left = 4
 
-# Print result
-print(hit_result["message"])
-if hit_result["hit_state"]:
-    print(f"Hit confirmed at row {hit_result['row'] + 1}, column {hit_result['column'] + 1}.")
+    # loopiung the game
+    while ship_left > 0:
+        # Display the current board, hide true because we dont want to sere the board
+        Battleship.print_board(board, hide=True)
 
-    # Update the board to replace the hit with [H]
-    Battleship.replace_hit(board, hit_result["row"], hit_result["column"])
-else:
-    print("No hit recorded.")
+        # player's guess
+        guess = Battleship.user_input()
 
-# Print the updated board with [H] if there's a hit
-Battleship.print_board(board)
+        # Check the guess
+        result = Battleship.check_hit(board, guess[0], guess[1])
+        print(result["message"])
+
+        if result["hit_state"] is True:  # Hit
+            ship_left -= 1
+
+    # Player has sunk the ship
+    print("\nYou sank the ship!")
+    # Reveal board with ship positions
+    Battleship.print_board(board, hide=False)
+
+
+#Still dont understand this but copy and past from his slides and seems to work ¯\_(ツ)_/¯
+if __name__ == "__main__":
+    game()
