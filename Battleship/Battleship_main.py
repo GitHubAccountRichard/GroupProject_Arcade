@@ -12,7 +12,7 @@ row2 = position2[0]
 column2 = position2[1]
 
 # Ensure that ships do not overlap
-while Battleship.compare(row1, column1, row2, column2) == True:
+while Battleship.compare(row1, column1, row2, column2):
     # If they overlap, regenerate only the second ship's position
     position2 = Battleship.ship_position()
     row2 = position2[0]
@@ -36,5 +36,11 @@ hit_result = Battleship.check_hit(row_pick, column_pick, row1, column1, row2, co
 print(hit_result["message"])
 if hit_result["hit_state"]:
     print(f"Hit confirmed at row {hit_result['row'] + 1}, column {hit_result['column'] + 1}.")
+
+    # Update the board to replace the hit with [H]
+    Battleship.replace_hit(board, hit_result["row"], hit_result["column"])
 else:
     print("No hit recorded.")
+
+# Print the updated board with [H] if there's a hit
+Battleship.print_board(board)

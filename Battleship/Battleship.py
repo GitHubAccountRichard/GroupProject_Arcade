@@ -104,3 +104,8 @@ def check_hit(row_pick, column_pick, row1, column1, row2, column2):
             "message": "You missed!"
         }
         return hit
+
+# Function to replace [X] with [H] if the ship has been hit
+def replace_hit(board, row, column):
+    if board[row][column] == "[X]":
+        board[row][column] = "[H]"
