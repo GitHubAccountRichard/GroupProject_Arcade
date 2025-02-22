@@ -18,5 +18,5 @@ word_guess_list = ["_"] * len(random_word)
 print(word_guess_list)
 
 #Write a function that takes the input and checks against the user input
-while True:
-    if
+
+
