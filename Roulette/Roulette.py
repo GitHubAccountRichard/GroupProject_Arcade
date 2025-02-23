@@ -4,17 +4,14 @@ credit = int(input("Enter the credit amount: "))
 
 roulette_numbers = list(range(37))
 
-# Select a random number from the roulette_numbers list
-roulette_choice = (random.choice(roulette_numbers))
-
-# Determine the color based on the number
-if roulette_choice == 0:
-    colour = "green"
-elif roulette_choice % 2 == 0:
-    colour = "black"
-else:
-    colour = "red"
 while "Yes" in input("Do you want to play/keep playing? (Yes/No): "):
+    roulette_choice = (random.choice(roulette_numbers))
+    if roulette_choice == 0:
+        colour = "green"
+    elif roulette_choice % 2 == 0:
+        colour = "black"
+    else:
+        colour = "red"
     while True:
         bet = int(input("Enter your bet amount: "))
         if bet <= credit:
