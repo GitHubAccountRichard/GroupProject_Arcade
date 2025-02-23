@@ -27,18 +27,19 @@ while lives > 0:
     if not guess.isalpha():
         print("Invalid input. Please enter a valid letter.")
         continue
-    if guess in word:
+    if guess in random_noun_name:
         print("Good guess!")
-        for i in range(len(word)):
-            if word[i] == guess:
+        for i in range(0,len(random_noun_name)):
+            if random_noun_name[i] == guess:
                 underscores[i] = guess
         print(underscores)
-    if guess not in word:
+    if guess not in random_noun_name:
         print("Oops! That letter is not in the word.")
         lives -= 1
         print(f"You have {lives} lives left.")
     if "_" not in underscores:
-        print("Congratulations! You guessed the word!")
+        word_guessed = "".join(underscores)
+        print(f"Congratulations! You guessed the word!, {word_guessed}.")
         break
 if lives == 0:
     print(f"You ran out of lives. The word was: {random_noun_name}")
