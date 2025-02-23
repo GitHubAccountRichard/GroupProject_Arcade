@@ -1,4 +1,4 @@
-from Battleship.Battleship import makeBoard, putShip, print_board, user_input, check_hit
+from Battleship.Battleship_functions import makeBoard, putShip, print_board, user_input, check_hit
 
 
 def game():

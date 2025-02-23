@@ -1,5 +1,10 @@
 from Battleship import Battleship_main
-from Battleship import Battleship
+from Battleship import Battleship_functions
+from Hangman.hangaman_alt import hangman_game
+
+
+
+
 
 Games = ["1. Battleship", "2. Hangman", "3. Roulette", "4. TicTacToe", "5. Quit"]
 print("Welcome to the Arcade!")
@@ -22,5 +27,8 @@ if GameChoice == 1:
     if __name__ == "__main__": #I forgot what this does but he mentioned that this is good so use it for your games too I guess ¯\_(ツ)_/¯
         Battleship_main.game()
 
-if GameChoice == 5:
+elif GameChoice == 2:
+    if __name__ == "__main__":
+        hangman_game()
+elif GameChoice == 5:
     quit()
