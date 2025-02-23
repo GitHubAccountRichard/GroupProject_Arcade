@@ -48,44 +48,47 @@ while playing:
         print("You won!")
         credit += bet
         print(f"You won ${bet}!")
+        print(f"Your credit is now ${credit}")
     elif numbet==roulette_choice:
         print("You won!")
         credit += bet*36
         print(f"You won ${bet*36}!")
-    elif numbet == "first12":
-        if roulette_choice in first12:
-            print("You won!")
-            credit += bet*3
-            print(f"You won ${bet*3}!")
-    elif numbet == "second12":
-        if roulette_choice in second12:
-            print("You won!")
-            credit += bet*3
-            print(f"You won ${bet*3}!")
-    elif numbet == "third12":
-        if roulette_choice in third12:
-            print("You won!")
-            credit += bet*3
-            print(f"You won ${bet*3}!")
-    elif numbet == "row1":
-        if roulette_choice in row1:
-            print("You won!")
-            credit += bet*3
-            print(f"You won ${bet*3}!")
-    elif numbet == "row2":
-        if roulette_choice in row2:
-            print("You won!")
-            credit += bet*3
-            print(f"You won ${bet*3}!")
-    elif numbet == "row3":
-        if roulette_choice in row3:
-            print("You won!")
-            credit += bet*3
-            print(f"You won ${bet*3}!")
+        print(f"Your credit is now ${credit}")
+    elif numbet == "first12" and roulette_choice in first12:
+        print("You won!")
+        credit += bet*3
+        print(f"You won ${bet*3}!")
+        print(f"Your credit is now ${credit}")
+    elif numbet == "second12" and roulette_choice in second12:
+        print("You won!")
+        credit += bet*3
+        print(f"You won ${bet*3}!")
+        print(f"Your credit is now ${credit}")
+    elif numbet == "third12" and roulette_choice in third12:
+        print("You won!")
+        credit += bet*3
+        print(f"You won ${bet*3}!")
+        print(f"Your credit is now ${credit}")
+    elif numbet == "row1" and roulette_choice in row1:
+        print("You won!")
+        credit += bet*3
+        print(f"You won ${bet*3}!")
+        print(f"Your credit is now ${credit}")
+    elif numbet == "row2" and roulette_choice in row2:
+        print("You won!")
+        credit += bet*3
+        print(f"You won ${bet*3}!")
+        print(f"Your credit is now ${credit}")
+    elif numbet == "row3" and roulette_choice in row3:
+        print("You won!")
+        credit += bet*3
+        print(f"You won ${bet*3}!")
+        print(f"Your credit is now ${credit}")
     else:
         print("You lost!")
         credit -= bet
         print(f"You lost ${bet}!")
+        print(f"Your credit is now ${credit}")
 
 
     play_again = input("Do you want to play another round? Enter Yes or No: ").strip().lower()
