@@ -1,4 +1,4 @@
-import Blackjack.Blackjack_game as Blackjack_game_funciton
+from Blackjack.Blackjack_game import Blackjack_game_funciton
 from Battleship import Battleship_main
 from Hangman.hangaman_alt import hangman_game
 from Roulette.Roulette import Roulette_game
@@ -24,6 +24,8 @@ __        __   _                            _          _   _
 while True:
     for i in Games:
         print(i)
+    if i == "8. Quit":
+        print(" ")
 
     try:
         GameChoice = int(input("What game do you want to play? (1-8)"))
