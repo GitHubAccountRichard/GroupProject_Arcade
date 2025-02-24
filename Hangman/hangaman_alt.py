@@ -3,6 +3,11 @@ from random import choice
 
 def hangman_game():
     print("Welcome to Hangman Game !!")
+    """
+    This is the hangman game, where by calling the function, you can play the game.
+    param: None
+    return: underscores, that will be used to represent the word to be guessed.
+    """
 
     with open("common.txt", "r") as file:
         words = file.read().splitlines()
