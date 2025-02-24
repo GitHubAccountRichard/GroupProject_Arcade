@@ -25,7 +25,6 @@ while True:
 if GameChoice == 1:
     if __name__ == "__main__": #I forgot what this does but he mentioned that this is good so use it for your games too I guess ¯\_(ツ)_/¯
         Battleship_main.game()
-
 elif GameChoice == 2:
     if __name__ == "__main__":
         hangman_game()
