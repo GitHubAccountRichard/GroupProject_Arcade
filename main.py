@@ -25,7 +25,7 @@ while True:
     for i in Games:
         print(i)
     if i == "8. Quit":
-        print("  ")
+        print("   ")
 
     try:
         GameChoice = int(input("What game do you want to play? (1-8)"))
