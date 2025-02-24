@@ -4,7 +4,7 @@ from Hangman.hangaman_alt import hangman_game
 from Roulette.Roulette import Roulette_game
 from TicTacToe.TicTacToe import play_game2
 from Wordle.Wordle import wordle_game
-
+from Memory_Folder.Memory_Game import play_game
 
 Games = ["1. Battleship", "2. Hangman", "3. Roulette", "4. Wordle", "5. Blackjack", "6. Tic-Tac-Toe", "7. Memory Game",
          "8. Quit"]
