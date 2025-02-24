@@ -2,8 +2,9 @@ import Blackjack.Blackjack_game as Blackjack_game_funciton
 from Battleship import Battleship_main
 from Hangman.hangaman_alt import hangman_game
 from Roulette.Roulette import Roulette_game
-from TicTacToe.TicTacToe import play_game
+from TicTacToe.TicTacToe import play_game2
 from Wordle.Wordle import wordle_game
+
 
 Games = ["1. Battleship", "2. Hangman", "3. Roulette", "4. Wordle", "5. Blackjack", "6. Tic-Tac-Toe", "7. Memory Game",
          "8. Quit"]
@@ -46,6 +47,9 @@ while True:
                 if __name__ == "__main__":
                     Blackjack_game_funciton()
             elif GameChoice == 6:
+                if __name__ == "__main__":
+                    play_game2()
+            elif GameChoice == 7:
                 if __name__ == "__main__":
                     play_game()
         else:
