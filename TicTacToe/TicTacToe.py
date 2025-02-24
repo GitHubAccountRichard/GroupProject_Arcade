@@ -75,7 +75,7 @@ def best_move(board):
 
 
 
-def play_game():
+def play_game2():
     board = [[" " for _ in range(3)] for _ in range(3)]
     print("Welcome to Tic-Tac-Toe!")
     print_board(board)
@@ -121,4 +121,7 @@ def play_game():
 
 
 
-play_game()
+if __name__ == "__main__":
+    play_game2()
+
+
