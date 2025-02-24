@@ -1,10 +1,13 @@
 import random
-
-credit = int(input("Enter the credit amount: "))
-
+while True:
+    try:
+        credit = int(input("Enter the credit amount: "))
+        break
+    except ValueError:
+        print("Invalid input. Please enter a valid integer number.")
 roulette_numbers = list(range(37))
 
-playing = "Yes" in input("Do you want to play/keep playing?, please enter Yes as it appears if so: ")
+playing = "Yes" in input("Do you want to play/keep playing?: say Yes as shown to consent to potential losses: ")
 while playing:
     roulette_choice = (random.choice(roulette_numbers))
     if roulette_choice == 0:
@@ -31,7 +34,7 @@ while playing:
     print(f"We are not responsible for any losses due to lack of following the rules.")
     valid_options = [str(i) for i in range(37)] + ['red', 'black', 'first12', 'second12', 'third12', 'row1', 'row2', 'row3']
     while True:
-        numbet = input("Enter where you want to bet (options are 0 to 36, red, black, first12, second12, third12, row1, row2, row3): ")
+        numbet = input("Enter where you want to bet (options are 0 to 36, red, black, first12, second12, third12, row1, row2, row3): ").lower()
         if numbet in valid_options:
             break
         else:

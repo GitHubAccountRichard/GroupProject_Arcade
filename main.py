@@ -1,14 +1,13 @@
 from Battleship import Battleship_main
 from Battleship import Battleship_functions
 from Hangman.hangaman_alt import hangman_game
+from Wordle.Wordle import wordle_game
 
 
 
 
-
-Games = ["1. Battleship", "2. Hangman", "3. Roulette", "4. TicTacToe", "5. Quit"]
+Games = ["1. Battleship", "2. Hangman", "3. Roulette", "4. Wordle", "5. Quit"]
 print("Welcome to the Arcade!")
-print("We have a couple of game")
 for i in Games:
     print(i)
 
@@ -30,5 +29,8 @@ if GameChoice == 1:
 elif GameChoice == 2:
     if __name__ == "__main__":
         hangman_game()
-elif GameChoice == 5:
+elif GameChoice == 4:
+    if __name__ == "__main__":
+        wordle_game()
+else:
     quit()
