@@ -2,7 +2,7 @@ from Battleship import Battleship_main
 from Battleship import Battleship_functions
 from Hangman.hangaman_alt import hangman_game
 from Wordle.Wordle import wordle_game
-
+from Roulette.Roulette import Roulette_game
 
 
 
@@ -29,6 +29,9 @@ if GameChoice == 1:
 elif GameChoice == 2:
     if __name__ == "__main__":
         hangman_game()
+elif GameChoice == 3:
+    if __name__ == "__main__":
+        Roulette_game()
 elif GameChoice == 4:
     if __name__ == "__main__":
         wordle_game()
