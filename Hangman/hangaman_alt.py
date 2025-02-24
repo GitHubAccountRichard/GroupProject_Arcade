@@ -12,7 +12,7 @@ def hangman_game():
         if word.isalpha():
             valid_words.append(word.lower())
     secret_word = choice(valid_words)
-    print(secret_word)
+
     lives = len(secret_word)
     underscores = []
     for _ in range(len(secret_word)):
