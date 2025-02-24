@@ -10,22 +10,24 @@ def hangman_game():
     """
 
     with open("common.txt", "r") as file:
-        words = file.read().splitlines()
+        words = file.read().splitlines()    # This opens the file common.txt file and spits it in lines.
 
     valid_words = []
     for word in words:
-        if word.isalpha():
+        if word.isalpha():  # This checks for words, that aren't double.
             valid_words.append(word.lower())
     secret_word = choice(valid_words)
 
-    lives = len(secret_word)
+    lives = len(secret_word) # Lives will depend on the length of word.
     underscores = []
     for _ in range(len(secret_word)):
         underscores.append("_")
-    print("Word to guess:", underscores)
-
+    print("Word to guess:", underscores) # Establishes the underscores for each word depending on the length.
+    letter_guessed = [] # Shows the letters that have been guessed
     while lives > 0:
         guess = input("Guess a letter: ")
+        (letter_guessed.append(guess))
+        print(letter_guessed)
         if len(guess) != 1:
             print("Invalid input. Please enter a single letter.")
             continue
