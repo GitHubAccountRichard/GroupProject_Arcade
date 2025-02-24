@@ -31,7 +31,7 @@ while playing:
     print(f"We are not responsible for any losses due to lack of following the rules.")
     valid_options = [str(i) for i in range(37)] + ['red', 'black', 'first12', 'second12', 'third12', 'row1', 'row2', 'row3']
     while True:
-        numbet = input("Enter where you want to bet (options are 0 to 36, red, black, first12, second12, third12, row1, row2, row3): ")
+        numbet = input("Enter where you want to bet (options are 0 to 36, red, black, first12, second12, third12, row1, row2, row3): ").lower()
         if numbet in valid_options:
             break
         else:
