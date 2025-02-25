@@ -31,7 +31,7 @@ def hangman_game():
         if len(guess) != 1:
             print("Invalid input. Please enter a single letter.")
             continue
-        if not guess.isalpha(): # This if statement and the previous one helps to check for invalid inputs.
+        if not guess.isalpha(): # This if statement and the previous one helps to check for invalid inputs
             print("Invalid input. Please enter a valid letter.")
             continue
         if guess in secret_word:
