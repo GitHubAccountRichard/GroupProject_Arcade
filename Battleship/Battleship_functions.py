@@ -88,7 +88,7 @@ def check_hit(board, row, col):
             "hit_state": True,
             "message": "You hit part of the ship!"
         }
-    elif board[row][col] in ["[O]", "[H]"]:  # Already guessed
+    elif board[row][col] in ["[O]", "[H]"]:
         return {
             "hit_state": None,
             "message": "You’ve already guessed this spot!"

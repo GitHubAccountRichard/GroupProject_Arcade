@@ -2,7 +2,12 @@ from Battleship.Battleship_functions import makeBoard, putShip, print_board, use
 
 
 def game():
+    """
+    This functions runs the battleship game using all the functions in the Battleship_functions.py file, basically just convenient way to run it
 
+    :raises ValueError: If user input is invalid or out of bounds.
+    :return: None
+    """
     print("Welcome to Battleship!")
 
     # Create board
