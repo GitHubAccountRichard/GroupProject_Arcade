@@ -3,22 +3,22 @@ import random
 def Roulette_game():
     while True:
         try:
-            credit = int(input("Enter the credit amount: "))
+            credit = int(input("Enter the credit amount: ")) #Inputing credit for playing
             break
         except ValueError:
-            print("Invalid input. Please enter a valid integer number.")
+            print("Invalid input. Please enter a valid integer number.") #keep going if not
     roulette_numbers = list(range(37))
-
+#Make loop to se if player wants to play
     playing = "Yes" in input("Do you want to play/keep playing?: say Yes as shown to consent to potential losses: ")
     while playing:
-        roulette_choice = (random.choice(roulette_numbers))
+        roulette_choice = (random.choice(roulette_numbers)) #This is for establishing colours
         if roulette_choice == 0:
             colour = "green"
         elif roulette_choice % 2 == 0:
             colour = "black"
         else:
             colour = "red"
-        while True:
+        while True: #With this loop you can only input valid bets
             bet = int(input("Enter your bet amount: "))
             if bet <= credit:
                 break
@@ -40,14 +40,14 @@ def Roulette_game():
             if numbet in valid_options:
                 break
             else:
-                print("Invalid input. Please try again.")
+                print("Invalid input. Please try again.") #This loops allows for error "proofness" if the options are not possible
 
-        if numbet.isdigit():
+        if numbet.isdigit():#Divides bets into numbers and groups
             numbet=int(numbet)
         else:
             numbet=numbet
 
-        print(f"The roulette number is {roulette_choice}, and the color is {colour}.")
+        print(f"The roulette number is {roulette_choice}, and the color is {colour}.") #Says the outcome
 
         if numbet == colour:
             print("You won!")
@@ -93,10 +93,10 @@ def Roulette_game():
             print("You lost!")
             credit -= bet
             print(f"You lost ${bet}!")
-            print(f"Your credit is now ${credit}")
+            print(f"Your credit is now ${credit}") #These are the criteria for winning or losing
 
 
-        play_again = input("Do you want to play another round? Enter Yes or No: ").strip().lower()
+        play_again = input("Do you want to play another round? Enter Yes or No: ").strip().lower() #For the player to play again
         if play_again != "yes" or credit <= 0:
             if credit <= 0:
                 print("You have run out of credit. Game over.")
