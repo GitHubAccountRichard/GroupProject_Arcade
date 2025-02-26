@@ -24,14 +24,14 @@ def hangman_game():
         underscores.append("_")
     print("Word to guess:", underscores) # Establishes the underscores for each word depending on the length.
     letter_guessed = [] # Shows the letters that have been guessed
-    while lives > 0:
+    while lives > 0: # While loop that will run as long as there are lives to play.
         guess = input("Guess a letter: ")
         (letter_guessed.append(guess))
         print(letter_guessed)
         if len(guess) != 1:
             print("Invalid input. Please enter a single letter.")
             continue
-        if not guess.isalpha():
+        if not guess.isalpha(): # This if statement and the previous one helps to check for invalid inputs
             print("Invalid input. Please enter a valid letter.")
             continue
         if guess in secret_word:
@@ -40,7 +40,7 @@ def hangman_game():
                 if secret_word[i] == guess:
                     underscores[i] = guess
             print(underscores)
-        if guess not in secret_word:
+        if guess not in secret_word: # This if statement and the previous one check if the guess is whether contained or not in the word to be guessed.
             print("Oops! That letter is not in the word.")
             lives -= 1
             print(f"You have {lives} lives left.")
@@ -48,7 +48,7 @@ def hangman_game():
             word_guessed = "".join(underscores)
             print(f"Congratulations! You guessed the word!, {word_guessed}.")
             break
-    if lives == 0:
+    if lives == 0: # This if statement determines that the player has lost, since he ran out of lives.
         print(f"You ran out of lives. The word was: {secret_word}")
 
 if __name__ == "__main__":
